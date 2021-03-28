@@ -3,12 +3,14 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
 
+import 'routes/methods.rutes.dart';
 import 'routes/static.routes.dart';
 
 Future<void> main() async {
   var app = new Router();
 
   app.mount('/static/', staticRouter());
+  app.mount('/methods/', methodsRouter());
 
   app.get('/', (Request request) => _echoRequest(request));
 
