@@ -6,23 +6,22 @@ import 'package:shelf_router/shelf_router.dart';
 Router methodsRouter() {
   var router = Router();
 
-  router.get("/", (Request request) {
+  router.get("/get", (Request request) {
     var parameters = request.context['shelf_router/params'];
-    print('parameters captured for the request are $parameters ');
+    print('GET \nparams= ${request.url.queryParametersAll}');
     return shelf.Response.ok('This is a get request');
   });
 
-  router.post("/", (Request request) async {
-    var parameters = params(request, 'name');
+  router.post("/post", (Request request) async {
     var body = await request.readAsString();
-    print('POST \nPARAMS=$parameters\nBODY=$body');
+    print('POST \nPARAMS= ${request.url.queryParametersAll} \nBODY=$body');
     return shelf.Response.ok('This is a post request');
   });
 
-  router.delete("/", (Request request) {
+  router.delete("/delete", (Request request) {
     var parameters = request.context['shelf_router/params'];
-    print('POST \nPARAMS=$parameters');
-    return shelf.Response.ok('This is a post request');
+    print('DELETE \nPARAMS=$parameters');
+    return shelf.Response.ok('This is a delete request');
   });
 
   return router;
