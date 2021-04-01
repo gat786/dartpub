@@ -5,12 +5,14 @@ import 'package:shelf_router/shelf_router.dart';
 
 import 'routes/methods.rutes.dart';
 import 'routes/static.routes.dart';
+import 'templates/mustache.dart';
 
 Future<void> main() async {
-  var app = new Router();
+  var app = Router();
 
   app.mount('/static/', staticRouter());
   app.mount('/methods/', methodsRouter());
+  app.mount('/templates/', templateRouter());
 
   app.get('/', (Request request) => _echoRequest(request));
 
